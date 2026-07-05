@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>إلى لوليتي</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --primary-color: #ff4d6d;
+            --text-color: #4a3e41;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, Tahoma, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            min-height: 100dvh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            overflow: hidden; 
+            padding: 16px;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 35px 24px;
+            border-radius: 28px;
+            box-shadow: 0 12px 40px rgba(223, 114, 136, 0.15);
+            text-align: center;
+            width: 100%;
+            max-width: 380px; 
+            animation: cardAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            position: relative;
+            z-index: 10; /* Keeps card above the rising background hearts */
+        }
+
+        .heart-icon {
+            font-size: 3.2rem;
+            color: var(--primary-color);
+            animation: heartbeat 1.4s infinite ease-in-out;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #cc2b49;
+            font-weight: 700;
+        }
+
+        .message {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            min-height: 80px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(255, 77, 109, 0.35);
+            transition: all 0.2s ease;
+            width: 100%; 
+            max-width: 280px;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+            background: #ff758f;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.12); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.12); }
+            70% { transform: scale(1); }
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: scale(0.92) translateY(15px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heart-icon">❤️</div>
+        <h1 id="title">هلوز يا روح قلبي  ✨</h1>
+        <div class="message">
+            <p id="text-space">عملت المفاجأة البسيطة دي النهاردة عشان حابب اني ابسطك...</p>
+        </div>
+        
+        <button class="btn" id="action-btn">دوسي هنا عشان تشوفي المفاجأة </button>
+        <div class="result" id="result-space"></div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('action-btn');
+        const textSpace = document.getElementById('text-space');
+        const resultSpace = document.getElementById('result-space');
+        const title = document.getElementById('title');
+
+        let step = 0;
+
+        btn.addEventListener('click', () => {
+            if (step === 0) {
+                title.textContent = " معلومة بسيطة...";
+                textSpace.textContent = "من بين كل المواقع الموجودة على النت، الموقع ده  كل سطر فيه مكتوب عشانك لوحدكِ يا لوليتي.";
+                btn.textContent = "كملي المفاجأة يا روح قلبي";
+                step++;
+            } else if (step === 1) {
+                btn.style.display = 'none';
+                textSpace.textContent = "بحبك و بموت فيكي يا كتكوتي...";
+                
+                setTimeout(() => {
+                    title.textContent = " اتمني تكون عجبتك يا عيوني...";
+                    textSpace.textContent = "احب اقولك بجد اني بحبك اوي و بموت فيكي و كل يوم بتمنا ان يجي الوقت اني اجيلك و تبقي مكتوبة مع اسمي و بجد ببقي زعلان اوي لما بنتخانق و بحس بقبضة في قلبي و ببقي عايز اهديكي بس مببقاش عارف حقك عليا يا ماما من كل حاجة انا بعملها لما بنتخانق و بجد اهم حاجة انك معايا و نفضل سوا بحبك يا عيون بابا ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️😘😘😘😘😘😘😘😘😘😘😘😘😘😘🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹.";
+                    resultSpace.textContent = "✨ تم التأكيد انك كتكوتي✨";
+                    resultSpace.classList.add('show');
+                    
+                    // 1. Fire the heavy initial blast of hearts
+                    createHeartStorm(60);
+                    
+                    // 2. Start the endless stream (spawns new hearts forever)
+                    startEndlessHearts();
+                }, 1800);
+            }
+        });
+
+        // Helper logic to build a single floating heart
+        function spawnSingleHeart() {
+            const heartTypes = ['❤️', '💖', '💝', '💕', '💗', '💓'];
+            const heart = document.createElement('div');
+            
+            heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-50px';
+            heart.style.fontSize = (Math.random() * 20 + 14) + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1'; // Flows gracefully behind the main glass card container
+
+            const duration = Math.random() * 2.5 + 2.5; // Lasts 2.5s to 5s
+            heart.style.transition = `transform ${duration}s cubic-bezier(0.1, 0.4, 0.4, 1), opacity ${duration}s ease-out`;
+            
+            document.body.appendChild(heart);
+
+            requestAnimationFrame(() => {
+                const sideSway = (Math.random() * 160) - 80;
+                const rotation = (Math.random() * 540) - 270;
+                
+                heart.style.transform = `translate(${sideSway}px, -115vh) rotate(${rotation}deg)`;
+                heart.style.opacity = '0';
+            });
+
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+
+        // Creates an intense initial explosion wave
+        function createHeartStorm(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(spawnSingleHeart, i * 30);
+            }
+        }
+
+        // Sets up the endless machine loop
+        function startEndlessHearts() {
+            // Continually drops a steady rhythm of floating hearts forever
+            setInterval(() => {
+                spawnSingleHeart();
+            }, 180); // Spawns a new heart every 180ms indefinitely without lagging the mobile browser CPU
+        }
+    </script>
+</body>
+</html>
