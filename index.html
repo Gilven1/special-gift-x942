@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إلى حُبي الأبدي ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary: #ff3366;
@@ -19,6 +22,8 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            /* [جديد] إلغاء التظليل الأزرق عند اللمس على الهواتف */
         }
 
         body {
@@ -30,6 +35,8 @@
             align-items: center;
             overflow-x: hidden;
             perspective: 1000px;
+            padding: 15px 10px;
+            /* [معدل] إعطاء مساحة أمان علوية وسفلية للموبايل */
         }
 
         /* خلفية النجوم والتألق */
@@ -51,26 +58,39 @@
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         /* البطاقة الرئيسية 3D */
         .card-container {
             position: relative;
-            width: 90%;
+            width: 100%;
+            /* [معدل] ملء العرض للتحكم عبر max-width و padding */
             max-width: 480px;
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            padding: 35px 25px;
+            padding: 30px 20px;
+            /* [معدل] تقليل الحواف الداخلية لتناسب الموبايل */
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
             z-index: 10;
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
             text-align: center;
+            margin: auto;
+            /* [جديد] ضمان التوسط في الشاشات الطويلة */
         }
 
         .avatar-section {
@@ -94,45 +114,68 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px var(--primary); }
-            50% { transform: scale(1.08); box-shadow: 0 0 35px var(--primary); }
-            100% { transform: scale(1); box-shadow: 0 0 20px var(--primary); }
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px var(--primary);
+            }
+
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 35px var(--primary);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px var(--primary);
+            }
         }
 
         h1 {
             font-family: 'Amiri', serif;
-            font-size: 2.1rem;
+            font-size: clamp(1.6rem, 5vw, 2.1rem);
+            /* [معدل] حجم خط مرن يتأقلم مع حجم الشاشة */
             color: #fff;
             margin-bottom: 6px;
             text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
         }
 
         .subtitle {
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+            /* [معدل] حجم خط مرن */
             color: var(--accent);
             margin-bottom: 22px;
         }
 
-        /* عداد الأيام والوقت */
+        /* عداد الوقت معاً */
         .love-counter {
             display: flex;
             justify-content: space-around;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 16px;
-            padding: 15px 10px;
+            padding: 12px 5px;
+            /* [معدل] تقليل الحواف الجانبية */
             margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.08);
+            gap: 4px;
+            /* [جديد] توزيع المسافات بشكل ثابت بين الأرقام */
+        }
+
+        .counter-item {
+            flex: 1;
+            /* [جديد] إعطاء أجزاء متساوية لكل أرقام العداد */
         }
 
         .counter-item span {
             display: block;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            /* [معدل] تكيف الحجم تلقائياً */
             font-weight: bold;
             color: #fff;
         }
 
         .counter-item label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            /* [معدل] تصغير خط العنوان ليناسب الشاشات الصغيرة */
             color: #aaa;
         }
 
@@ -169,9 +212,12 @@
         }
 
         .timeline-text {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            /* [معدل] ضبط الحجم للوضوح على الهواتف */
             color: #ddd;
             margin-top: 2px;
+            word-break: break-word;
+            /* [جديد] حماية النصوص من الخروج عن نطاق البطاقة */
         }
 
         /* الزر التفاعلي */
@@ -179,9 +225,10 @@
             background: linear-gradient(45deg, var(--primary), var(--accent));
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 20px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            /* [معدل] */
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
@@ -207,14 +254,18 @@
             z-index: 100;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
+            /* [معدل] */
         }
 
         .modal-content {
             background: #161226;
             border: 1px solid var(--primary);
-            padding: 30px;
+            padding: 25px 20px;
+            /* [معدل] */
             border-radius: 20px;
+            width: 100%;
+            /* [جديد] */
             max-width: 400px;
             text-align: center;
             position: relative;
@@ -223,8 +274,15 @@
         }
 
         @keyframes zoomIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .close-btn {
@@ -234,9 +292,11 @@
             color: #aaa;
             font-size: 24px;
             cursor: pointer;
+            padding: 5px;
+            /* [جديد] زيادة مساحة الضغط على الزر للهواتف */
         }
 
-        /* القلوب المنهارة عند فتح الرسالة */
+        /* القلوب المنهارة */
         .falling-heart {
             position: fixed;
             top: -10vh;
@@ -252,8 +312,25 @@
                 opacity: 0;
             }
         }
+
+        /* [جديد] Media Query للهواتف الصغرى جداً (أقل من 360 بكسل) */
+        @media (max-width: 360px) {
+            .card-container {
+                padding: 20px 15px;
+            }
+
+            .avatar-section {
+                width: 70px;
+                height: 70px;
+            }
+
+            .avatar-heart {
+                font-size: 30px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div id="stars-container"></div>
@@ -307,9 +384,17 @@
             <span class="close-btn" onclick="closeSurprise()">&times;</span>
             <h2 style="color: var(--primary); margin-bottom: 15px; font-family: 'Amiri', serif;">منذ 4 ديسمبر... ❤️</h2>
             <p style="line-height: 1.8; color: #ccc; font-size: 0.95rem;">
-               من ساعت اليوم ده و انا كل حاجة حلوى في حياتي بدأت، بصراحة بقيت شايف ان اليوم ده من اسعد ايام حياتي و لو رجع بياالزمن مليون مرة هختار اني اقولك اني بحبك كل مرة لاني فعلا بحبك و بموت فيكي و عمري ما حبيت انك تزعلي مني يا صغنن انت انا عارف انك بتحبيني و بجد انا كمان موت فيكي و كل يوم بحاول اكتر و اكتر عشان لما يجي اليوم الي انا بتمناه يحصل الي انا صبرت عليه سنين و فعلا يكون اسعد الايام الي هتمر عليا انا و انتي، حقك عليا لو كنت زعلتك مرة او مرات عشان خاطري سامحيني لاني مليش غيرك الي اكون معاه و مهما حصل محدش في الدنيا دي يقدر يقرب حتى من المكان الي انتي عندي فيه انا بجد بحبك و مش حب عادي لا انا اتعلقت بيكي لدرجة اني مبقيتش عايز انجح علشاني و بس لا انا بقيت عايز انجح علشان نعيش انا و انتي سوا بقيت حياتنا ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂<br><br>
-               ربنا يخليكي ليا و ميحرمنيش منك يا بسبوستي الصغننة انتي انا بجد بحبك و مقدرش استغني عنك و حقك عليا من كل حاجة او موقف وحش انا عملتو❤️❤️❤️❤️❤️❤️🥹🥹🥹🥹🫂🫂🫂🫂<br><br>
-               <h2>Ba7abek ya lolty ❤️🥹😘🫂</h2>
+                من ساعت اليوم ده و انا كل حاجة حلوى في حياتي بدأت، بصراحة بقيت شايف ان اليوم ده من اسعد ايام حياتي و لو
+                رجع بياالزمن مليون مرة هختار اني اقولك اني بحبك كل مرة لاني فعلا بحبك و بموت فيكي و عمري ما حبيت انك
+                تزعلي مني يا صغنن انت انا عارف انك بتحبيني و بجد انا كمان موت فيكي و كل يوم بحاول اكتر و اكتر عشان لما
+                يجي اليوم الي انا بتمناه يحصل الي انا صبرت عليه سنين و فعلا يكون اسعد الايام الي هتمر عليا انا و انتي،
+                حقك عليا لو كنت زعلتك مرة او مرات عشان خاطري سامحيني لاني مليش غيرك الي اكون معاه و مهما حصل محدش في
+                الدنيا دي يقدر يقرب حتى من المكان الي انتي عندي فيه انا بجد بحبك و مش حب عادي لا انا اتعلقت بيكي لدرجة
+                اني مبقيتش عايز انجح علشاني و بس لا انا بقيت عايز انجح علشان نعيش انا و انتي سوا بقيت حياتنا
+                ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🥹🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂<br><br>
+                ربنا يخليكي ليا و ميحرمنيش منك يا بسبوستي الصغننة انتي انا بجد بحبك و مقدرش استغني عنك و حقك عليا من كل
+                حاجة او موقف وحش انا عملتو❤️❤️❤️❤️❤️❤️🥹🥹🥹🥹🫂🫂🫂🫂<br><br>
+            <h2>Ba7abek ya lolty ❤️🥹😘🫂</h2>
             </p>
         </div>
     </div>
@@ -328,15 +413,17 @@
             starsContainer.appendChild(star);
         }
 
-        // 2. حركة البطاقة 3D
+        // 2. حركة البطاقة 3D (تعمل على الشاشات الكبيرة فقط لتفادي المشاكل مع الماوس واللمس على الموبايل)
         const card = document.getElementById('card');
-        document.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
+        if (window.innerWidth > 768) { /* [جديد] تفادي اهتزاز الشاشة في الموبايل */
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+        }
 
-        // 3. ضبط التوقيت بالظبط: 4 ديسمبر 2025 - الساعة 10:00 مساءً (22:00)
+        // 3. ضبط التوقيت: 4 ديسمبر 2025 - الساعة 10:00 مساءً (22:00)
         const startDate = new Date('2025-12-04T22:00:00');
 
         function updateCounter() {
@@ -362,8 +449,7 @@
         function openSurprise() {
             document.getElementById('surpriseModal').style.display = 'flex';
             
-            // إنشاء تأثير انهمار القلوب
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 20; i++) { /* [معدل] تخفيف عدد القلوب قليلاً لرفع الأداء في الموبايلات الضعيفة */
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.classList.add('falling-heart');
@@ -382,4 +468,5 @@
         }
     </script>
 </body>
+
 </html>
