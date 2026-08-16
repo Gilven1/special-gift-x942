@@ -241,7 +241,6 @@
             box-shadow: 0 15px 25px rgba(255, 51, 102, 0.5);
         }
 
-        /* نافذة الرسالة السرية */
         .modal {
             display: none;
             position: fixed;
@@ -255,22 +254,34 @@
             justify-content: center;
             align-items: center;
             padding: 15px;
-            /* [معدل] */
         }
 
         .modal-content {
             background: #161226;
             border: 1px solid var(--primary);
             padding: 25px 20px;
-            /* [معدل] */
             border-radius: 20px;
             width: 100%;
-            /* [جديد] */
             max-width: 400px;
+            max-height: 80vh;
+            /* [جديد] حد أقصى للارتفاع 80% من طول الشاشة */
+            overflow-y: auto;
+            /* [جديد] تفعيل التمرير العمودي عند زيادة النص */
+            -webkit-overflow-scrolling: touch;
+            /* [جديد] تمرير سلس على أجهزة الأندرويد والآيفون */
             text-align: center;
             position: relative;
             animation: zoomIn 0.4s ease;
             box-shadow: 0 0 30px rgba(255, 51, 102, 0.3);
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
         }
 
         @keyframes zoomIn {
@@ -448,7 +459,7 @@
         // 4. التحكم في النافذة المنبثقة وتأثير القلوب
         function openSurprise() {
             document.getElementById('surpriseModal').style.display = 'flex';
-            
+
             for (let i = 0; i < 20; i++) { /* [معدل] تخفيف عدد القلوب قليلاً لرفع الأداء في الموبايلات الضعيفة */
                 setTimeout(() => {
                     const heart = document.createElement('div');
